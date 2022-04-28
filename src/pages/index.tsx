@@ -8,10 +8,11 @@ export const IndexPage = () => {
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>Hello Vite + React!</p>
         <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
+          <button type="button" className="btn" onClick={() => setCount((count) => count + 1)}>
             count is: {count}
           </button>
         </p>
+        <div className="i-carbon:add text-lg"></div>
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
         </p>
