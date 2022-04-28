@@ -1,22 +1,35 @@
+import { Box, Center, ColorScheme, Group, SegmentedControl, Switch, useMantineColorScheme } from '@mantine/core'
+import { Sun, Moon } from 'tabler-icons-react'
+
 export const DarkSwitch = () => {
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+
   return (
-    <div className="dark-switch">
-      <input
-        type="checkbox"
-        id="dark-switch"
-        onChange={(e) => {
-          console.log(e)
-          if (e.target.value === 'dark') {
-            document.body.classList.add('dark')
-          } else {
-            document.body.classList.remove('dark')
-          }
-        }}
+    <Group position="center" my="xl">
+      <SegmentedControl
+        value={colorScheme}
+        onChange={(v) => toggleColorScheme(v as ColorScheme)}
+        data={[
+          {
+            value: 'light',
+            label: (
+              <Center>
+                <Sun size={16} />
+                <Box ml={10}>Light</Box>
+              </Center>
+            ),
+          },
+          {
+            value: 'dark',
+            label: (
+              <Center>
+                <Moon size={16} />
+                <Box ml={10}>Dark</Box>
+              </Center>
+            ),
+          },
+        ]}
       />
-      <label htmlFor="dark-switch" className="dark-switch-label">
-        <span className="dark-switch-inner"></span>
-        <span className="dark-switch-switch"></span>
-      </label>
-    </div>
+    </Group>
   )
 }
