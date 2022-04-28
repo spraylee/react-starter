@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { DarkSwitch } from '../components/DarkSwitch'
 
 export const IndexPage = () => {
   const [count, setCount] = useState(0)
   return (
     <div className="App">
+      <DarkSwitch></DarkSwitch>
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>Hello Vite + React!</p>

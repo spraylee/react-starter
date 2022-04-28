@@ -11,12 +11,14 @@ specifiers:
   react-router-dom: '6'
   typescript: ^4.6.3
   unocss: ^0.32.1
+  usehooks-ts: ^2.5.1
   vite: ^2.9.5
 
 dependencies:
   react: 18.0.0
   react-dom: 18.0.0_react@18.0.0
   react-router-dom: 6.3.0_react-dom@18.0.0+react@18.0.0
+  usehooks-ts: 2.5.1_react@18.0.0
 
 devDependencies:
   '@iconify-json/carbon': 1.1.3
@@ -1450,6 +1452,14 @@ packages:
       - supports-color
       - vite
     dev: true
+
+  /usehooks-ts/2.5.1_react@18.0.0:
+    resolution: {integrity: sha512-vGIl/r7SMey3Uwe/YykLTJ5AmrlBe02MwQxsUBxNWDmfegEdHXXQaJ2VoOEayKW85Zwr+NyIhfVG+xrQYjtXVg==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.0.0
+    dev: false
 
   /vite/2.9.5:
     resolution: {integrity: sha512-dvMN64X2YEQgSXF1lYabKXw3BbN6e+BL67+P3Vy4MacnY+UzT1AfkHiioFSi9+uiDUiaDy7Ax/LQqivk6orilg==}
