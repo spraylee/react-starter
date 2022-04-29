@@ -9,7 +9,7 @@ jobs:
     name: Deploy job
     runs-on: ubuntu-latest
     env:
-      DEPLOY_PATH: /home/www/react-start # 替换为自己的部署路径
+      DEPLOY_PATH: /home/www/react-starter # 替换为自己的部署路径
 
     strategy:
       matrix:
