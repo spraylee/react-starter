@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { DarkSwitch } from '../components/DarkSwitch'
+import { MainLayout } from '../layouts'
 
 export const IndexPage = () => {
   const [count, setCount] = useState(0)
+  return <MainLayout />
   return (
     <div className="App">
       <DarkSwitch></DarkSwitch>
