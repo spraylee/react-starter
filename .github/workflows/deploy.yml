@@ -1,0 +1,60 @@
+name: Deploy App
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy job
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_PATH: /home/www/react-start # 替换为自己的部署路径
+
+    strategy:
+      matrix:
+        node_version: [14.x, 16.x]
+        os: [ubuntu-latest, windows-latest]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node version to ${{ matrix.node_version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node_version }}
+          cache: pnpm
+
+      - name: Install
+        run: pnpm i
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Ensure folder and clean it
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script_stop: true
+          script: |
+            mkdir -p ${{ env.DEPLOY_PATH }}
+            cd ${{ env.DEPLOY_PATH }}
+            find -delete
+
+      - name: Upload files
+        uses: appleboy/scp-action@master
+        with:
+          source: './dist/*' # Local file path - REQUIRED false - DEFAULT ./
+          strip_components: 1 # 复制后，移除目录层数（dist/* => [target]/*）
+          target: ${{ env.DEPLOY_PATH }} # Remote file path - REQUIRED false - DEFAULT ~/
+          host: ${{secrets.HOST}} # Remote server address - REQUIRED true
+          port: ${{secrets.PORT}} # Remote server port - REQUIRED false - DEFAULT 22
+          username: ${{secrets.USERNAME}} # Remote server user - REQUIRED true
+          password: ${{secrets.PASSWORD}} # User password - REQUIRED at least one of "password" or "key"
