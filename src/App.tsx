@@ -38,7 +38,7 @@ export const App = () => {
         withGlobalStyles
         withNormalizeCSS
       >
-        <ModalsProvider modalProps={{ closeButtonLabel: '取消' }}>
+        <ModalsProvider modalProps={{ centered: true, title: '温馨提示' }} labels={{ cancel: '取消', confirm: '确定' }}>
           <BrowserRouter>
             <AppRouter />
           </BrowserRouter>

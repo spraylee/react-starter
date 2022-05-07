@@ -102,10 +102,10 @@ export function MainLayout() {
             sx={{ fontWeight: 700 }}
             onClick={() =>
               models.openConfirmModal({
-                title: '温馨提示',
+                // title: '温馨提示1',
                 children: '确定要退出登录吗？',
-                closeOnConfirm: false,
-                labels: { cancel: '取消', confirm: '确定' },
+                // closeOnConfirm: false,
+                // labels: { cancel: '取消', confirm: '确定' },
               })
             }
           >
