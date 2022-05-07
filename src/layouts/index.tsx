@@ -1,17 +1,8 @@
 import React, { useState } from 'react'
-import { createStyles, Navbar, Group, Code } from '@mantine/core'
-import {
-  BellRinging,
-  Fingerprint,
-  Key,
-  Settings,
-  TwoFA,
-  DatabaseImport,
-  Receipt2,
-  SwitchHorizontal,
-  Logout,
-} from 'tabler-icons-react'
+import { createStyles, Navbar, Group, Code, Modal, Text, Button } from '@mantine/core'
 import { DarkSwitch } from '../components/DarkSwitch'
+import clsx from 'clsx'
+import { useModals } from '@mantine/modals'
 // import { MantineLogo } from '../../shared/MantineLogo'
 
 const useStyles = createStyles((theme, _params, getRef) => {
@@ -53,6 +44,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
       ref: icon,
       color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
       marginRight: theme.spacing.sm,
+      fontSize: 18,
     },
 
     linkActive: {
@@ -71,19 +63,21 @@ const useStyles = createStyles((theme, _params, getRef) => {
 })
 
 const data = [
-  { link: '', label: 'Notifications', icon: BellRinging },
-  { link: '', label: 'Billing', icon: Receipt2 },
-  { link: '', label: 'Security', icon: Fingerprint },
-  { link: '', label: 'SSH Keys', icon: Key },
-  { link: '', label: 'Databases', icon: DatabaseImport },
-  { link: '', label: 'Authentication', icon: TwoFA },
-  { link: '', label: 'Other Settings', icon: Settings },
+  { link: '', label: 'Notifications', icon: 'i-carbon:notification' },
+  { link: '', label: 'Billing', icon: 'i-carbon:currency-dollar' },
+  { link: '', label: 'Security', icon: 'i-carbon:security' },
+  { link: '', label: 'SSH Keys', icon: 'i-carbon:unlocked' },
+  { link: '', label: 'Databases', icon: 'i-carbon:data-base' },
+  { link: '', label: 'Authentication', icon: 'i-carbon:two-factor-authentication' },
+  { link: '', label: 'Other Settings', icon: 'i-carbon:settings' },
 ]
 
 export function MainLayout() {
   const { classes, cx } = useStyles()
   const [active, setActive] = useState('Billing')
 
+  const [opened, setOpened] = useState(true)
+  const models = useModals()
   const links = data.map((item) => (
     <a
       className={cx(classes.link, { [classes.linkActive]: item.label === active })}
@@ -94,7 +88,7 @@ export function MainLayout() {
         setActive(item.label)
       }}
     >
-      <item.icon className={classes.linkIcon} />
+      <div className={clsx([classes.linkIcon, item.icon])} />
       <span>{item.label}</span>
     </a>
   ))
@@ -104,23 +98,48 @@ export function MainLayout() {
       <Navbar.Section grow>
         <Group className={classes.header} position="apart">
           {/* <MantineLogo /> */}
-          <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
+          <Code
+            sx={{ fontWeight: 700 }}
+            onClick={() =>
+              models.openConfirmModal({
+                title: '温馨提示',
+                children: '确定要退出登录吗？',
+                closeOnConfirm: false,
+                labels: { cancel: '取消', confirm: '确定' },
+              })
+            }
+          >
+            v3.1.2
+          </Code>
           <DarkSwitch />
         </Group>
         {links}
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-          <SwitchHorizontal className={classes.linkIcon} />
+        <a
+          href="#"
+          className={classes.link}
+          onClick={(event) => {
+            event.preventDefault()
+            setOpened(!opened)
+          }}
+        >
+          <div className={clsx(classes.linkIcon, 'i-carbon:arrows-horizontal', 'text-xl')} />
           <span>Change account</span>
         </a>
 
         <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-          <Logout className={classes.linkIcon} />
+          <div className={clsx(classes.linkIcon, 'i-carbon:login', 'text-xl')} />
           <span>Logout</span>
         </a>
       </Navbar.Section>
+      <Modal opened={opened} onClose={() => setOpened(false)} title={'Change account'}>
+        <Text>Modal content</Text>
+        <div className="text-right">
+          <Button variant="filled">确定</Button>
+        </div>
+      </Modal>
     </Navbar>
   )
 }

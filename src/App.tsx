@@ -1,5 +1,6 @@
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import { ModalsProvider } from '@mantine/modals'
 import { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { AppRouter } from './router'
@@ -31,12 +32,17 @@ export const App = () => {
         //   spacing: { xs: 15, sm: 20, md: 25, lg: 30, xl: 40 },
         // }}
         theme={{ colorScheme }}
+        defaultProps={{
+          Modal: { overlayOpacity: 0.2, overlayBlur: 2, centered: true },
+        }}
         withGlobalStyles
         withNormalizeCSS
       >
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
+        <ModalsProvider modalProps={{ closeButtonLabel: '取消' }}>
+          <BrowserRouter>
+            <AppRouter />
+          </BrowserRouter>
+        </ModalsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   )

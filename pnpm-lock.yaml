@@ -4,10 +4,12 @@ specifiers:
   '@iconify-json/carbon': ^1.1.3
   '@mantine/core': ^4.2.1
   '@mantine/hooks': ^4.2.1
+  '@mantine/modals': ^4.2.2
   '@types/react': ^18.0.0
   '@types/react-dom': ^18.0.0
   '@unocss/reset': ^0.32.1
   '@vitejs/plugin-react': ^1.3.0
+  clsx: ^1.1.1
   react: ^18.0.0
   react-dom: ^18.0.0
   react-router-dom: '6'
@@ -20,6 +22,8 @@ specifiers:
 dependencies:
   '@mantine/core': 4.2.1_cdb565c5e3d2c77accd59510fa3e72d9
   '@mantine/hooks': 4.2.1_react@18.0.0
+  '@mantine/modals': 4.2.2_23a2dfd9767ed4ce7648c46441e66c22
+  clsx: 1.1.1
   react: 18.0.0
   react-dom: 18.0.0_react@18.0.0
   react-router-dom: 6.3.0_react-dom@18.0.0+react@18.0.0
@@ -470,6 +474,20 @@ packages:
       react: '>=16.8.0'
     dependencies:
       react: 18.0.0
+    dev: false
+
+  /@mantine/modals/4.2.2_23a2dfd9767ed4ce7648c46441e66c22:
+    resolution: {integrity: sha512-C8qn87uUSYngmun8VOUWQQttNNCQeNKAaxyOl98pUzUmF2Z9LWQumK5D6I/IJzIf3hWYBOD/L57ZxmdQfTKd9w==}
+    peerDependencies:
+      '@mantine/core': 4.2.2
+      '@mantine/hooks': 4.2.2
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@mantine/core': 4.2.1_cdb565c5e3d2c77accd59510fa3e72d9
+      '@mantine/hooks': 4.2.1_react@18.0.0
+      react: 18.0.0
+      react-dom: 18.0.0_react@18.0.0
     dev: false
 
   /@mantine/styles/4.2.1_210fa9a098879be372c40b8bd028eb36:

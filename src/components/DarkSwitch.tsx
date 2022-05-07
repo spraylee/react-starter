@@ -8,7 +8,6 @@ import {
   Switch,
   useMantineColorScheme,
 } from '@mantine/core'
-import { Sun, Moon, MoonStars } from 'tabler-icons-react'
 
 export const DarkSwitch = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
@@ -23,7 +22,7 @@ export const DarkSwitch = () => {
           color: theme.colorScheme === 'dark' ? theme.colors.yellow[4] : theme.colors.blue[6],
         })}
       >
-        {colorScheme === 'dark' ? <Sun size={18} /> : <MoonStars size={18} />}
+        {colorScheme === 'dark' ? <div className="i-carbon:sun text-lg" /> : <div className="i-carbon:moon text-lg" />}
       </ActionIcon>
     </Group>
   )
