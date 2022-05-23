@@ -7,6 +7,12 @@ import './styles/index.css'
 import 'uno.css'
 import { App } from './App'
 
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
+dayjs.locale('zh-cn')
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
