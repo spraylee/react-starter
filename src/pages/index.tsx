@@ -1,9 +1,21 @@
 import { ScrollArea } from '@mantine/core'
-import { useEffect, useRef, useState } from 'react'
+import { Loader } from '@react-three/drei'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 export const IndexPage = () => {
+  return (
+    <>
+      <Suspense fallback={null}>
+        <IndexPageInner />
+      </Suspense>
+      <Loader />
+    </>
+  )
+}
+
+export const IndexPageInner = () => {
   const domRef = useRef<HTMLDivElement>(null)
   const sceneRef = useRef<THREE.Scene>()
   useEffect(() => {
@@ -106,7 +118,7 @@ export const IndexPage = () => {
           requestAnimationFrame(animate)
 
           // model.rotation.x += 0.01
-          // model.rotation.y += 0.003
+          model.rotation.y += 0.003
 
           model.traverse(function (object) {
             if (object instanceof THREE.Mesh) {
