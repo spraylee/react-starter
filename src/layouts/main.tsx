@@ -76,7 +76,7 @@ export function MainLayout() {
   const { classes, cx } = useStyles()
   const [active, setActive] = useState('Billing')
 
-  const [opened, setOpened] = useState(true)
+  const [opened, setOpened] = useState(false)
   const models = useModals()
   const links = data.map((item) => (
     <a

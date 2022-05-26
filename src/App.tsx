@@ -33,12 +33,15 @@ export const App = () => {
         // }}
         theme={{ colorScheme }}
         defaultProps={{
-          Modal: { overlayOpacity: 0.2, overlayBlur: 2, centered: true },
+          Modal: { overlayOpacity: 0.2, overlayBlur: 2, centered: true, closeOnClickOutside: false },
         }}
         withGlobalStyles
         withNormalizeCSS
       >
-        <ModalsProvider modalProps={{ centered: true, title: '温馨提示' }} labels={{ cancel: '取消', confirm: '确定' }}>
+        <ModalsProvider
+          modalProps={{ centered: true, title: '温馨提示', closeOnClickOutside: false }}
+          labels={{ cancel: '取消', confirm: '确定' }}
+        >
           <BrowserRouter>
             <AppRouter />
           </BrowserRouter>
